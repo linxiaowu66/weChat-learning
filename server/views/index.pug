@@ -1,0 +1,47 @@
+doctype html
+html
+  head
+    title= 'TodoList'
+    script(type="text/javascript", src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js")
+    script(type="text/javascript", src="main.js")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(charset="utf-8")
+    script.
+      wx.config({
+        debug: true,
+        appId: '#{appId}',
+        timestamp: '#{weixin.timestamp}',
+        nonceStr: '#{weixin.nonceStr}',
+        signature: '#{weixin.signature}',
+        jsApiList: ['scanQRCode']
+      })
+  body
+    #app
+      div(class="weui-cell")
+        div(class="weui-cell_hd")
+          span(class="g-index-user")= nickname
+          span(class="g-index-phone")= openid
+        div(class="weui-cell__bd")
+          span 当前开发任务
+        div(class="weui-cell__ft")
+          span(class="weui-badge g-index-badge")= lists.length
+      each item in lists
+        div(class="weui-panel weui-panel_access g-mbottom-10")
+          section(class="weui-panel__hd")
+            span= item.order
+            span(class='g-index-status')= item.status
+          section(class="weui-panel__bd")
+            div(class="weui-media-box weui-media-box_text")
+              p(class="weui-media-box__desc") 索引：#{item.id}
+              p(class="weui-media-box__desc") 时间：#{item.date}
+              p(class="weui-media-box__desc") 城市：#{item.city}
+          section(class="weui-panel__ft g-ta-right")
+            a(class="weui-btn weui-btn_mini weui-btn_default g-mright-10") 取消
+            a(class="weui-btn weui-btn_mini weui-btn_primary g-mright-10") 确认
+      section(class="g-index-start-delivery")
+        button(class="g-index-button")
+          p(class="g-index-btn-text") 开始
+          p(class="g-index-btn-text") 派件
+
+
+

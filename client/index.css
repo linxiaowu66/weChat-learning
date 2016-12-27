@@ -1,0 +1,95 @@
+/* reset */
+
+html, body {
+  height: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body{
+  font-family: -apple-system-font, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+ul{
+  list-style: none;
+}
+
+body, .page {
+  background-color: #F5F6F7;
+}
+
+
+/* lib */
+.link{
+  color: #1AAD19;
+}
+.weui-cell{
+  background-color: #fff;
+}
+
+.g-ta-right{
+  text-align: right;
+}
+
+.g-mright-10{
+  margin-right: 10px;
+}
+
+.g-mbottom-10{
+  margin-bottom: 10px;
+}
+
+/* 绑定手机样式 */
+
+#phone .g-phone-info{
+  padding: 10px 0px 10px 15px;
+}
+
+#phone .g-phone-btn{
+  margin-top: 10px;
+  width: 80%;
+}
+
+/* 快递派件主页样式 */
+#app .weui-cell_hd{
+  position: relative;
+}
+
+#app .weui-cell__bd{
+  text-align: right;
+  padding-right: 10px;
+}
+
+#app .g-index-badge{
+  margin-left: 5px;
+}
+
+#app .g-index-user{
+
+}
+#app .g-index-phone{
+  font-size: 0.6rem;
+  position: absolute;
+  top: 20px;
+  left: 1px;
+}
+
+#app .g-index-status{
+  float: right;
+  color: rgb(15, 15, 15);
+}
+
+#app .g-index-start-delivery{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+#app .g-index-button{
+  background-color: rgba(153, 153, 153, 0.6);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  color: #FFF;
+  font-size: 1em;
+  border-width: 0px;
+}
