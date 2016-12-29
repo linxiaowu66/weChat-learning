@@ -74,7 +74,7 @@ const getSignature = (url) => {
       .then((json) => {
         console.log('cache not found2: ', JSON.parse(json))
         const { ticket, expires_in } = JSON.parse(json)
-        cache.put('ticket', ticket, expires_in);  // 加入缓存
+        cache.put('ticket', ticket, expires_in * 1000, function(){console.log('timeout occuring!!!!!')});  // 加入缓存
         console.log(cache.get('ticket'));
         resolve(sign(ticket, url))
       })

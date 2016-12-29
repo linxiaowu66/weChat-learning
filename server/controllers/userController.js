@@ -17,7 +17,10 @@ exports.authUser = (req, res) => {
   var code = req.query.code
   try{
     client.getAccessToken(code, function (err, result) {
-
+      if (err) {
+        console.error('getAccessToken error: ', err)
+        return
+      }
       var accessToken = result.data.access_token
       var openid = result.data.openid
       var unionid = result.data.unionid
