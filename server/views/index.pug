@@ -3,8 +3,9 @@ html
   head
     title= 'TodoList'
     script(type="text/javascript", src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js")
-    script(type="text/javascript", src="main.js")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    script(type="text/javascript", src="client/js/main.js")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
+    meta(name="format-detection", content="telephone=no")
     meta(charset="utf-8")
     script.
       wx.config({
@@ -17,7 +18,7 @@ html
       })
   body
     #app
-      div(class="weui-cell")
+      section(class="weui-cell g-index-head")
         div(class="weui-cell_hd")
           span(class="g-index-user")= nickname
           span(class="g-index-phone")= openid
@@ -25,6 +26,12 @@ html
           span 当前开发任务
         div(class="weui-cell__ft")
           span(class="weui-badge g-index-badge")= lists.length
+      section(class="weui-search-bar" id="searchBar")
+        form(class="weui-search-bar__form")
+          div(class="weui-search-bar__box")
+            input(type="text" class="weui-search-bar__input g-index-order-id" id="searchInput" placeholder="请输入快递派件单号进行快捷搜索")
+            i(class="weui-icon-search g-index-search")
+      section(class='g-index-list')
       each item in lists
         div(class="weui-panel weui-panel_access g-mbottom-10")
           section(class="weui-panel__hd")
@@ -42,6 +49,8 @@ html
         button(class="g-index-button")
           p(class="g-index-btn-text") 启动
           p(class="g-index-btn-text") 扫码
-
+      include message.pug
+      section(class="g-index-loading")
+        p(class="g-index-loading-text")
 
 

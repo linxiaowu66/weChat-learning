@@ -20,13 +20,21 @@
   },
   "homepage": "git@192.168.1.66:FE/scan-express",
   "scripts": {
-    "deploy": "forever stopall && NODE_ENV=production forever start --minUptime 1000 --spinSleepTime 1000  ./server/server.js",
-    "dev": "NODE_ENV=development node babel-register.js",
-    "build": "node webpack/build.js",
+    "deploy": "npm install --registry=http://r.cnpmjs.org && npm run build && forever stopall && NODE_ENV=production forever start --minUptime 1000 --spinSleepTime 1000  ./dist/server/server.js",
+    "dev": "better-npm-run start-server-dev",
+    "build": "gulp build-server && node webpack/build.js",
     "start": "NODE_ENV=production node ./server/server.js",
     "lint": "eslint ./ --ext .js --cache --ignore-pattern .gitignore",
     "lintFix": "eslint ./ --cache --fix --ignore-pattern .gitignore",
     "precommit-msg": "echo Pre-commit checking...please wait && exit 0"
+  },
+  "betterScripts": {
+    "start-server-dev": {
+      "command": "node babel-register.js",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    }
   },
   "dependencies": {
     "babel-polyfill": "^6.20.0",
@@ -57,6 +65,7 @@
     "babel-eslint": "^7.0.0",
     "babel-loader": "^6.0.0",
     "babel-register": "^6.18.0",
+    "better-npm-run": "0.0.13",
     "css-loader": "^0.25.0",
     "debug": "^2.5.2",
     "eslint": "^3.7.1",
@@ -70,6 +79,10 @@
     "exports-loader": "^0.6.3",
     "file-loader": "^0.9.0",
     "ghooks": "^1.3.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean": "^0.3.2",
+    "gulp-sourcemaps": "^1.9.1",
     "inject-loader": "^2.0.1",
     "json-loader": "^0.5.4",
     "ora": "^0.3.0",

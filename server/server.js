@@ -8,7 +8,7 @@ import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import session from 'express-session'
 import sfs from 'session-file-store'
-import config from '../config'
+import config from './config'
 
 const Promise = require('bluebird')
 const mongoose = require('mongoose')

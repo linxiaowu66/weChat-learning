@@ -12,18 +12,13 @@ module.exports = {
     path.join(__dirname, '../client/main.js')
   ],
   output: {
-    path: path.join(__dirname, '/dist/'),
-    filename: '[name].js',
+    path: path.join(__dirname, '../dist/'),
+    filename: utils.assetsPath('js/[name].js'),
     publicPath: '/'
   },
   resolve: {
     extensions: ['', '.js'],
-    fallback: [path.join(__dirname, '../node_modules')],
-    alias: {
-      'src': path.resolve(__dirname, '../client'),
-      'assets': path.resolve(__dirname, '../client/assets'),
-      'js': path.resolve(__dirname, '../client/js')
-    }
+    fallback: [path.join(__dirname, '../node_modules')]
   },
   resolveLoader: {
     fallback: [path.join(__dirname, '../node_modules')]

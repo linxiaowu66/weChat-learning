@@ -17,7 +17,7 @@ var spinner = ora('building for production...')
 spinner.start()
 
 var assetsPath = path.join(__dirname, '../dist/client')
-rm('-rf', assetsPath)
+// rm('-rf', assetsPath)
 mkdir('-p', assetsPath)
 
 webpack(webpackConfig, function (err, stats) {

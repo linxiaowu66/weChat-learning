@@ -2,13 +2,13 @@
 
 var path = require('path')
 var webpack = require('webpack')
-var projectRoot = path.resolve(__dirname, '../')
+var projectRoot = path.resolve(__dirname, '../client')
 var utils = require('./utils')
 
 module.exports = {
-  entry: {
-    app: './client/main.js'
-  },
+  entry: [
+    path.join(__dirname, '../client/main.js')
+  ],
   output: {
     path: path.join(__dirname, '../dist'),
     filename: utils.assetsPath('js/[name].js'),
@@ -18,11 +18,7 @@ module.exports = {
   devtool: '#source-map',
   resolve: {
     extensions: ['', '.js'],
-    fallback: [path.join(__dirname, '../node_modules')],
-    alias: {
-      'src': path.resolve(__dirname, '../src'),
-      'assets': path.resolve(__dirname, '../src/assets'),
-    }
+    fallback: [path.join(__dirname, '../node_modules')]
   },
   resolveLoader: {
     fallback: [path.join(__dirname, '../node_modules')]
@@ -38,6 +34,9 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
+    new webpack.ProvidePlugin({
+      $: 'zepto/dist/zepto.min.js'
+    })
   ],
   module: {
     preLoaders: [
@@ -78,6 +77,10 @@ module.exports = {
       {
         test: /\.css$/,
         loader: "style-loader!css-loader"
+      },
+      {
+        test: require.resolve('zepto'),
+        loader: 'exports?window.Zepto!script'
       }
     ]
   },
