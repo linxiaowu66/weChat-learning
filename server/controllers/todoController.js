@@ -6,17 +6,17 @@ import getSignature from '../helper/weixinSignature.js'
 
 exports.index = (req, res) => {
   const openid = req.session.current_user
-  User.findByOpenId(openid).then(data => {
-    if (data.length === 0){
-      res.render('404.pug',{
-        msg: "获取用户信息失败，请重试"
+  User.findByOpenId(openid).then((data) => {
+    if (data.length === 0) {
+      res.render('404.pug', {
+        msg: '获取用户信息失败，请重试'
       })
     }
     Promise.all([
       request.getCityList(),
       getSignature(`${config.domain}/index`)
     ])
-    .then(result => {
+    .then((result) => {
       console.log(result[1])
       res.render('index.pug', {
         appId: config.appId,
@@ -25,16 +25,18 @@ exports.index = (req, res) => {
         nickname: data[0].nickname,
         openid: data[0].openid
       })
-    }).catch(err => {
+    }).catch((err) => {
       console.error('Promise Error: ', err)
-      res.render('404.pug',{
-        msg: "获取用户信息失败，请重试"
+      res.render('404.pug', {
+        msg: '获取用户信息失败，请重试',
+        title: '服务器出错'
       })
     })
-  }).catch(err => {
+  }).catch((err) => {
     console.err('findByOpenId Error: ', err)
-    res.render('404.pug',{
-      msg: "获取用户信息失败，请重试"
+    res.render('404.pug', {
+      msg: '获取用户信息失败，请重试',
+      title: '服务器出错
     })
   })
 }

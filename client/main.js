@@ -1,6 +1,5 @@
 import $ from 'zepto'
 import 'weui/dist/style/weui.min.css'
-// import './jweixin-1.0.0.min'
 import './index.css'
 
 /* eslint no-console: 0 */

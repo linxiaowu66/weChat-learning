@@ -1,11 +1,11 @@
 {
   "name": "scan-express",
   "version": "0.0.1",
-  "description": "派件业务扫码取件需求简化版",
+  "description": "微信网页开发demo",
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "git@192.168.1.66:FE/scan-express.git"
+    "url": "https://github.com/linxiaowu66/weChat-learning"
   },
   "keywords": [
     "express",
@@ -13,7 +13,7 @@
     "vue",
     "node"
   ],
-  "author": "FE@dianwoda",
+  "author": "linxiaowu66",
   "license": "MIT",
   "bugs": {
     "url": "git@192.168.1.66:FE/scan-express.git/issues"

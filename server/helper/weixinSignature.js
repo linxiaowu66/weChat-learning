@@ -38,7 +38,7 @@ const raw = (args) => {
 * @returns
 */
 const sign = (ticket, url) => {
-  const timeStamp =  parseInt(new Date().getTime() / 1000, 10)
+  const timeStamp = parseInt(new Date().getTime() / 1000, 10)
   const ret = {
     jsapi_ticket: ticket,
     nonceStr: config.noncestr,
@@ -54,18 +54,17 @@ const sign = (ticket, url) => {
   return ret
 }
 
-const getSignature = (url) => {
-  return new Promise((resolve, reject) => {
-    try{
-      let jsapiTicket
+const getSignature = url => new Promise((resolve, reject) => {
+  try {
+    let jsapiTicket
 
-      if (cache.get('ticket')) {
-        jsapiTicket = cache.get('ticket');
-        console.log('cache found: ', jsapiTicket)
-        resolve(sign(jsapiTicket, url))
-      }
+    if (cache.get('ticket')) {
+      jsapiTicket = cache.get('ticket');
+      console.log('cache found: ', jsapiTicket)
+      resolve(sign(jsapiTicket, url))
+    }
 
-      rp(`${config.accessTokenUrl}?grant_type=${config.grant_type}&appid=${config.appId}&secret=${config.appSecret}`)
+    rp(`${config.accessTokenUrl}?grant_type=${config.grant_type}&appid=${config.appId}&secret=${config.appSecret}`)
       .then((body) => {
         console.log('cache not found1: ', JSON.parse(body))
         const { access_token } = JSON.parse(body)
@@ -74,7 +73,7 @@ const getSignature = (url) => {
       .then((json) => {
         console.log('cache not found2: ', JSON.parse(json))
         const { ticket, expires_in } = JSON.parse(json)
-        cache.put('ticket', ticket, expires_in * 1000, function(){console.log('timeout occuring!!!!!')});  // 加入缓存
+        cache.put('ticket', ticket, expires_in * 1000, () => { console.log('timeout occuring!!!!!') });  // 加入缓存
         console.log(cache.get('ticket'));
         resolve(sign(ticket, url))
       })
@@ -82,10 +81,9 @@ const getSignature = (url) => {
         debug('getSignature Error: ', err)
         reject(err)
       })
-    }catch(err){
-      reject(err)
-    }
-  })
-}
+  } catch (err) {
+    reject(err)
+  }
+})
 
 export default getSignature
