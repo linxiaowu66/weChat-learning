@@ -1,7 +1,12 @@
-const OAuth = require('wechat-oauth')
-const request = require('../helper/request.js')
-const User = require('../models/user.js')
+/* eslint no-console: 0 */
+/* eslint no-shadow: 0 */
+/* eslint no-param-reassign: 0*/
+
 import config from '../config'
+
+const OAuth = require('wechat-oauth')
+const User = require('../models/user.js')
+
 const client = new OAuth(config.appId, config.appSecret)
 
 
@@ -21,16 +26,16 @@ exports.authUser = (req, res) => {
         console.error('getAccessToken error: ', err)
         return
       }
-      const accessToken = result.data.access_token
+      // const accessToken = result.data.access_token
       const openid = result.data.openid
-      const unionid = result.data.unionid
+      // const unionid = result.data.unionid
 
       User.findByOpenId(openid)
       .then((user) => {
         if (user.length === 0) {
           client.getUser(openid, (err, user) => {
             User.create(user)
-              .then((data) => {
+              .then(() => {
                 req.session.current_user = user.openid
                 res.redirect('index')
               })
@@ -60,7 +65,7 @@ exports.getSignature = (req, res) => {
 
   /*  加密/校验流程如下： */
   // 1. 将token、timestamp、nonce三个参数进行字典序排序
-  const array = new Array(config.appToken, timestamp, nonce)
+  const array = [config.appToken, timestamp, nonce]
   array.sort()
   const str = array.toString().replace(/,/g, '')
 

@@ -35,9 +35,9 @@ $(function () {
           </section>
           <section class="weui-panel__bd">
             <div class="weui-media-box weui-media-box_text">
-              <p class="weui-media-box__desc">面单号：${list[i].id}</p>
-              <p class="weui-media-box__desc">取件时间：${list[i].date}</p>
-              <p class="weui-media-box__desc">快递公司：${list[i].city}</p>
+              <p class="weui-media-box__desc">索引：${list[i].id}</p>
+              <p class="weui-media-box__desc">时间：${list[i].date}</p>
+              <p class="weui-media-box__desc">城市：${list[i].city}</p>
           </section>
           <section class="weui-panel__ft g-ta-right">
             <a class="weui-btn weui-btn_mini weui-btn_default g-mright-10 g-index-cancel">取消</a>
@@ -51,16 +51,15 @@ $(function () {
   }
 
   function orderSearch() {
-    const expressCode = $('.g-index-order-id').val()
-    const currentPage = 1
+    const code = $('.g-index-order-id').val()
 
     $.ajax({
       type: 'POST',
-      url: '/order/search',
-      data: { expressCode, currentPage },
+      url: '/search',
+      data: { code },
       success(data) {
         if (!data.status) {
-          const element = generateOrderList(data.data.list)
+          const element = generateOrderList(data.data)
           $('#app .g-index-list').html(element)
         } else {
           showSnack('操作失败', data.msg)

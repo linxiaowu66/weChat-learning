@@ -60,21 +60,17 @@ const getSignature = url => new Promise((resolve, reject) => {
 
     if (cache.get('ticket')) {
       jsapiTicket = cache.get('ticket');
-      console.log('cache found: ', jsapiTicket)
       resolve(sign(jsapiTicket, url))
     }
 
     rp(`${config.accessTokenUrl}?grant_type=${config.grant_type}&appid=${config.appId}&secret=${config.appSecret}`)
       .then((body) => {
-        console.log('cache not found1: ', JSON.parse(body))
         const { access_token } = JSON.parse(body)
         return rp(`${config.ticketUrl}?access_token=${access_token}&type=jsapi`)
       })
       .then((json) => {
-        console.log('cache not found2: ', JSON.parse(json))
         const { ticket, expires_in } = JSON.parse(json)
-        cache.put('ticket', ticket, expires_in * 1000, () => { console.log('timeout occuring!!!!!') });  // 加入缓存
-        console.log(cache.get('ticket'));
+        cache.put('ticket', ticket, expires_in * 1000);  // 加入缓存
         resolve(sign(ticket, url))
       })
       .catch((err) => {

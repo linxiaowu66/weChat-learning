@@ -1,7 +1,6 @@
-
+import config from '../config'
 
 const rp = require('request-promise')
-import config from '../config'
 
 exports.getCityList = () => rp({
   url: `http://${config.jsonHost}:${config.jsonPort}/lists`,

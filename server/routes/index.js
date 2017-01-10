@@ -23,4 +23,6 @@ router.get('/getsignature', userController.getSignature)
 
 router.get('/index', expressController.index)
 
+router.post('/search', expressController.search)
+
 module.exports = router;
