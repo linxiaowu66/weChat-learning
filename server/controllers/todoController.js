@@ -1,7 +1,7 @@
 const request = require('../helper/request.js')
 const User = require('../models/user.js')
 const util = require('../helper/util.js')
-import config from '../../config'
+import config from '../config'
 import getSignature from '../helper/weixinSignature.js'
 
 exports.index = (req, res) => {
@@ -36,7 +36,7 @@ exports.index = (req, res) => {
     console.err('findByOpenId Error: ', err)
     res.render('404.pug', {
       msg: '获取用户信息失败，请重试',
-      title: '服务器出错
+      title: '服务器出错'
     })
   })
 }

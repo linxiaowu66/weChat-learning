@@ -6,7 +6,7 @@
 import cache from 'memory-cache'
 import jsSHA from 'jssha'
 import Debug from 'debug'
-import config from '../../config'
+import config from '../config'
 
 const rp = require('request-promise')
 

@@ -1,7 +1,7 @@
 const OAuth = require('wechat-oauth')
 const request = require('../helper/request.js')
 const User = require('../models/user.js')
-import config from '../../config'
+import config from '../config'
 const client = new OAuth(config.appId, config.appSecret)
 
 
