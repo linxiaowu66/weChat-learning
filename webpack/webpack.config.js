@@ -35,14 +35,6 @@ module.exports = {
     })
   ],
   module: {
-    preLoaders: [
-      {
-        test: /\.js$/,
-        loader: 'eslint',
-        include: projectRoot,
-        exclude: /node_modules/
-      }
-    ],
     loaders: [
       {
         test: /\.js$/,
@@ -79,8 +71,5 @@ module.exports = {
         loader: 'exports?window.Zepto!script'
       }
     ]
-  },
-  eslint: {
-    formatter: require('eslint-friendly-formatter')
   }
 }

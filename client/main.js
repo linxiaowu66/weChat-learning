@@ -68,12 +68,12 @@ $(function () {
     })
   }
 
-  // 派件单搜索
+  // 订单搜索
   $('.g-index-search').on('click', () => {
     orderSearch()
   })
 
-  // 直接回车搜索派件单
+  // 直接回车搜索订单
   $('#searchBar .weui-search-bar__form').on('submit', (e) => {
     e.preventDefault();
     orderSearch()

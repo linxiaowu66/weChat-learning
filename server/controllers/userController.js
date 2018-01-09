@@ -1,7 +1,3 @@
-/* eslint no-console: 0 */
-/* eslint no-shadow: 0 */
-/* eslint no-param-reassign: 0*/
-
 import config from '../config'
 
 const OAuth = require('wechat-oauth')

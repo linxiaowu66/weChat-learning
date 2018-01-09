@@ -1,8 +1,3 @@
-/* eslint import/no-extraneous-dependencies: 0*/
-/* eslint-disable new-cap */
-/* eslint guard-for-in: 0 */
-/* eslint camelcase: 0 */
-
 import cache from 'memory-cache'
 import jsSHA from 'jssha'
 import Debug from 'debug'
